@@ -48,6 +48,7 @@ def main(args):
         print("Incorrect Country input.")
         return
 
+    Races = []
     for date in dates:
         results = race.getResults(date)
 

@@ -3,8 +3,8 @@ import numpy as np
 
 from bs4 import BeautifulSoup
 
-from src.Objects.Races import *
-from src.Helpers import WebHelper as wh
+from Objects.Races import *
+from Helpers import WebHelper as wh
 
 
 # url = "https://racing.hkjc.com/racing/information/English/racing/RaceCard.aspx?RaceDate={}&Racecourse={}&RaceNo={}".format(

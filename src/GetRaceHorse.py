@@ -19,7 +19,7 @@ def main(args):
 
     Horses = race.getHorses()
     if len(Horses) > 0:
-        fileName = ("{0}\RaceHorse.npy").format( country)
+        fileName = ("{0}/RaceHorse.npy").format( country)
         fh.save_datafile(fileName, Horses)
 
         print(f'{len(Horses)} horses save in {fileName}')
