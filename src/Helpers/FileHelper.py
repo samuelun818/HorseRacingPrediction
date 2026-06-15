@@ -1,7 +1,7 @@
 import os
 import numpy as np
 
-datapath = "./DataFiles/"
+datapath = "./datafiles/"
 
 
 def save_datafile(filename, data):

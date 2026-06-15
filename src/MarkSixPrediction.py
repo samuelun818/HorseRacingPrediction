@@ -14,7 +14,7 @@ from keras.layers import Dense, Input, LSTM, Dropout
 def Load_Lotteries():
     dataset = []
     readedfilecount = 0
-    path = "../DataFiles/MarkSix/"
+    path = "../datafiles/MarkSix/"
     files = os.listdir(path)
     files.sort()
 
@@ -121,7 +121,7 @@ def predict(X):
     result = model.predict(X)
     print(result.shape)
 
-    np.savetxt('../Log/marksix_result.txt', result[0], delimiter=',')
+    np.savetxt('../logs/marksix_result.txt', result[0], delimiter=',')
 
     return
 

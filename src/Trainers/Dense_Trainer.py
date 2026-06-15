@@ -52,8 +52,8 @@ class dense_trainer:
         if x.shape[0] > 100:
             x = x[100:]
             y = y[100:]
-            np.savetxt('./Log/race_horses.txt', x[0], delimiter=',')
-            np.savetxt('./Log/win_horses.txt', y[0], delimiter=',')
+            np.savetxt('./logs/race_horses.txt', x[0], delimiter=',')
+            np.savetxt('./logs/win_horses.txt', y[0], delimiter=',')
 
         return x, y
     
@@ -113,7 +113,7 @@ class dense_trainer:
             self.model.summary()
 
         self.result = self.model.predict(x) 
-        np.savetxt('./Log/race_result.txt', self.result[0], delimiter=',')
+        np.savetxt('./logs/race_result.txt', self.result[0], delimiter=',')
         return self.result
 
 

@@ -37,8 +37,8 @@ class lstm_trainer:
 
                 x[i][h][horses[h]] = True
 
-        np.savetxt('./Log/race_horses.txt', x[0][0], delimiter=',')
-        np.savetxt('./Log/win_horses.txt', y[0], delimiter=',')
+        np.savetxt('./logs/race_horses.txt', x[0][0], delimiter=',')
+        np.savetxt('./logs/win_horses.txt', y[0], delimiter=',')
         return x, y
 
     def model_train(self, x_train, y_train):
@@ -108,7 +108,7 @@ class lstm_trainer:
         # self.model = keras.models.load_model(self.modelfile)
 
         self.result = self.model.predict(x) 
-        np.savetxt('./Log/race_result.txt', self.result[0], delimiter=',')
+        np.savetxt('./logs/race_result.txt', self.result[0], delimiter=',')
         return self.result
 
     def plot_history(self):

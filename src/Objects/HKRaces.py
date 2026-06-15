@@ -172,7 +172,7 @@ class HKRaces(Races):
     def load_Results(self):
         resultset = []
         readedfilecount = 0
-        path = "DataFiles/RaceResult/"
+        path = "datafiles/RaceResult/"
         files = os.listdir(path)
         files.sort()
 
@@ -193,7 +193,7 @@ class HKRaces(Races):
     def load_Cards(self):
         card = []
         readfilecount = 0
-        path = "DataFiles/"
+        path = "datafiles/"
         files = os.listdir(path)
         files.sort()
 
@@ -216,7 +216,7 @@ class HKRaces(Races):
     def load_Horses(self):
         horses = []
         readfilecount = 0
-        path = "DataFiles/"
+        path = "datafiles/"
         files = os.listdir(path)
         files.sort()
 

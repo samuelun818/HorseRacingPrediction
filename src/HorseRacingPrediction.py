@@ -18,7 +18,7 @@ trainer = None
 def Load_RaceResult():
     dataset = []
     readedfilecount = 0
-    path = "../DataFiles/RaceResult/"
+    path = "../datafiles/RaceResult/"
     files = os.listdir(path)
     files.sort()
 
@@ -39,7 +39,7 @@ def Load_RaceResult():
 def load_RaceHorse():
     dataset = []
     readfilecount = 0
-    path = "../DataFiles/"
+    path = "../datafiles/"
     files = os.listdir(path)
     files.sort()
 
@@ -62,7 +62,7 @@ def load_RaceHorse():
 def load_RaceCard():
     dataset = []
     readfilecount = 0
-    path = "../DataFiles/"
+    path = "../datafiles/"
     files = os.listdir(path)
     files.sort()
 

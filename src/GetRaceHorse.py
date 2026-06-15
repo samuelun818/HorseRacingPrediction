@@ -21,7 +21,7 @@ def main(args):
     Horses = getracehorse()
     fh.save_datafile('HK_RaceHorse.npy', Horses)
     # if len(Horses) > 0:
-    #     np.save('./DataFiles/HK_RaceHorse.npy'.format(), Horses)
+    #     np.save('./datafiles/HK_RaceHorse.npy'.format(), Horses)
     #     print(f'{len(Horses)} horses save in RaceHorse_HK.npy')
     return
 
