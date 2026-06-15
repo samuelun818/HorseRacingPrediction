@@ -39,11 +39,11 @@ class bag_of_horses:
 
     def save_horsebag(self):
         self.horses = np.array(self.horses)
-        np.save('././datafiles/bagofhorse.npy', self.horses)
+        np.save('.././datafiles/HK/bagofhorse.npy', self.horses)
 
     def load_horsebag(self):
         # Load the .npy file
-        self.horses = np.load('././datafiles/bagofhorse.npy')
+        self.horses = np.load('.././datafiles/HK/bagofhorse.npy')
 
         self.le.fit(self.horses)
         print ("Loaded horses： {numofhorses}".format(numofhorses=len(self.horses)))

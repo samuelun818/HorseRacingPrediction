@@ -20,9 +20,9 @@ class HKRaces(Races):
         self.racereusltquery = "?RaceDate={}&Racecourse={}&RaceNo={}"
         self.racehorseurl = "https://racing.hkjc.com/en-us/local/information/selecthorsebychar"
         self.racehorsequery = "?ordertype={}"
-        self.racehorsefileprefix = "HK_RaceHorse"
-        self.raceresultfileprefix = "HK_RaceResult"
-        self.racecardfileprefix = "HK_RaceCard"
+        self.racehorsefileprefix = "RaceHorse"
+        self.raceresultfileprefix = "RaceResult"
+        self.racecardfileprefix = "RaceCard"
         self.venues = ['HV', 'ST']
         self.nos = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', ]
         self.numofHorse = 16
@@ -169,10 +169,10 @@ class HKRaces(Races):
         return horses, winner
 
 
-    def load_Results(self):
+    def loadResults(self):
         resultset = []
         readedfilecount = 0
-        path = "datafiles/RaceResult/"
+        path = f"../datafiles/{self.location}/RaceResult/"
         files = os.listdir(path)
         files.sort()
 
@@ -190,10 +190,10 @@ class HKRaces(Races):
         print("read file: {0}".format(readedfilecount))
         return resultset
 
-    def load_Cards(self):
+    def loadCards(self):
         card = []
         readfilecount = 0
-        path = "datafiles/"
+        path = f"../datafiles/{self.location}/RaceCard/"
         files = os.listdir(path)
         files.sort()
 
@@ -213,10 +213,10 @@ class HKRaces(Races):
 
         return card
 
-    def load_Horses(self):
+    def loadHorses(self):
         horses = []
         readfilecount = 0
-        path = "datafiles/"
+        path = f"../datafiles/{self.location}/"
         files = os.listdir(path)
         files.sort()
 

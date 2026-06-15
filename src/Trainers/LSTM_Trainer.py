@@ -37,8 +37,8 @@ class lstm_trainer:
 
                 x[i][h][horses[h]] = True
 
-        np.savetxt('./logs/race_horses.txt', x[0][0], delimiter=',')
-        np.savetxt('./logs/win_horses.txt', y[0], delimiter=',')
+        np.savetxt('../logs/race_horses.txt', x[0][0], delimiter=',')
+        np.savetxt('../logs/win_horses.txt', y[0], delimiter=',')
         return x, y
 
     def model_train(self, x_train, y_train):

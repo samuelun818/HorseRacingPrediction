@@ -7,80 +7,14 @@ from Trainers.BagofHourse import bag_of_horses
 from Trainers.Dense_Trainer import dense_trainer
 from Trainers.LSTM_Trainer import lstm_trainer
 
+from Objects.UKRaces import *
+from Objects.HKRaces import *
+
 from matplotlib import pyplot
 
 import argparse
 
-
 bag = bag_of_horses()
-trainer = None
-
-def Load_RaceResult():
-    dataset = []
-    readedfilecount = 0
-    path = "../datafiles/HK/RaceResult/"
-    files = os.listdir(path)
-    files.sort()
-
-    for filename in files:
-        if filename.startswith("HK_RaceResult"):
-            npydata = []
-            npydata = np.load(path + filename, allow_pickle=True)
-            #print("{}: {}".format(filename, npydata.shape))
-            if npydata is not None or len(npydata) > 0:
-                dataset.extend(npydata, )
-
-            readedfilecount = readedfilecount + 1
-    
-    dataset = np.array(dataset)
-    print("read file: {0}".format(readedfilecount))
-    return dataset
-
-def load_RaceHorse():
-    dataset = []
-    readfilecount = 0
-    path = "../datafiles/"
-    files = os.listdir(path)
-    files.sort()
-
-    for filename in files:
-        if filename.startswith("HK_RaceHorse"):
-            npydata = []
-            npydata = np.load(path + filename, allow_pickle=True)
-            # print("{}: {}".format(filename, npydata.shape))
-            if npydata is not None or len(npydata) > 0:
-                dataset.extend(npydata, )
-
-            readfilecount = readfilecount + 1
-            print("read file: {0}".format(filename))
-
-    if dataset is not None and len(dataset) > 0:
-        dataset = np.array(dataset)
-
-    return dataset
-
-def load_RaceCard():
-    dataset = []
-    readfilecount = 0
-    path = "../datafiles/"
-    files = os.listdir(path)
-    files.sort()
-
-    for filename in files:
-        if filename.startswith("HK_RaceCard_"):
-            npydata = []
-            npydata = np.load(path + filename, allow_pickle=True)
-            #print("{}: {}".format(filename, npydata.shape))
-            if npydata is not None or len(npydata) > 0:
-                dataset.extend(npydata, )
-
-            readfilecount = readfilecount + 1
-
-    print("read file: {0}".format(readfilecount))
-    if dataset is not None and len(dataset) > 0:
-        dataset = np.array(dataset)
-
-    return dataset
 
 def Training(trainer , race_horses, win_horses, training_size=1):
     size = round(race_horses.shape[0] - (race_horses.shape[0] * training_size))
@@ -139,6 +73,7 @@ def Prediction(trainer, next_races, next_results):
     return True
 
 def main(args):
+    trainer = None
     if (args.modeltype=="dense"):
         trainer = dense_trainer()
     elif (args.modeltype == "lstm"):
@@ -147,21 +82,20 @@ def main(args):
         print("incorrect model type: ", args.modeltype)
         return
 
+
+    race = HKRaces()
     venue = "ST"
     if args.action == "train":
-        raceResult = Load_RaceResult()
+        raceResult = race.loadResuts()
         print("No of race: {}".format(raceResult.shape[0]))
 
         bag.fill_horsebag(raceResult)
         print("Filled bag of Horses: {}".format(bag.horses.shape))
 
-        raceHorses = load_RaceHorse()
+        raceHorses = race.loadHorses()
         if (bag.append_horses(raceHorses)):
             bag.save_horsebag()
         print("Appended active horses: {}".format(bag.horses.shape))
-        if "CALL ME MAGNIFIQUE" in bag.horses:
-            print("CALL ME MAGNIFIQUE exist")
-
 
         race_horses, race_winners = bag.vectorize_races(raceResult, venue)
         print("Vectorize train Races ({2}): {0} / {1}".format(race_horses.shape, race_winners.shape, venue))
@@ -171,21 +105,13 @@ def main(args):
     if args.action == "predict":
         bag.load_horsebag()   # 10762
 
-        raceCard = load_RaceCard()
+        raceCard = race.loadCards()
         isAppended, isCompleted = False, False
 
         ## predicting
         while not isCompleted:
             try:
-                # if isAppended:
-                #     print("Retrain Models with new horses.")
-                #     race_horses, race_winners = bag.vectorize_races(raceResult)
-                #     print("Vectorize train Races: {0} / {1}".format(race_horses.shape, race_winners.shape))
-                #
-                #     Training(trainer, race_horses, race_winners)
-                #     isAppended = False
-                #     print("Retrained. ({})".format(isAppended))
-                print(venue)
+
                 next_horses, next_results = bag.vectorize_races(raceCard, venue)
                 print ("Vectorize new races: {0} / {1}".format(next_horses.shape, next_results.shape))
 
@@ -193,8 +119,6 @@ def main(args):
             except Exception as e:
                 if "unseen labels" in str(e):
                     print(f"New horse exists. {e}")
-                    # isAppended = True
-                    # bag.append_horsebag(raceCard)
                     isCompleted = True
                 else:
                     print(f"Exception occurred: {e}")
