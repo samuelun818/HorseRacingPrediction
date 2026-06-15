@@ -14,7 +14,7 @@ class lstm_trainer:
         self.history, self.loss, self.accuracy = None, None, None
         self.ranktype = "win"
         self.le = None
-        self.modelfile = "./Models/{}_model_{}.keras".format(self.ranktype, self.modeltype)
+        self.modelfile = "../outputs/{}_model_{}.keras".format(self.ranktype, self.modeltype)
         self.result = None
         return
 
@@ -108,14 +108,14 @@ class lstm_trainer:
         # self.model = keras.models.load_model(self.modelfile)
 
         self.result = self.model.predict(x) 
-        np.savetxt('./logs/race_result.txt', self.result[0], delimiter=',')
+        np.savetxt('../logs/race_result.txt', self.result[0], delimiter=',')
         return self.result
 
     def plot_history(self):
         if self.history is None:
             return
         
-        filename = "plot_RacingPredictionTraining_{}.png".format(self.modeltype.upper())
+        filename = "../plots/RacingPredictionTraining_{}.png".format(self.modeltype.upper())
         # plot loss during training
         pyplot.subplot(211)
         pyplot.title('Loss / Categorical Cross Entropy ({})'.format(self.modeltype.upper()))
@@ -133,7 +133,7 @@ class lstm_trainer:
         if self.result is None:
             return
         
-        filename = "plot_RacingPredictionResult_{}.png".format(self.modeltype.upper())
+        filename = "../plots/RacingPredictionResult_{}.png".format(self.modeltype.upper())
         # plot original value
         # pyplot.subplot(311)
         # pyplot.title('Original')
