@@ -18,7 +18,7 @@ trainer = None
 def Load_RaceResult():
     dataset = []
     readedfilecount = 0
-    path = "../datafiles/RaceResult/"
+    path = "../datafiles/HK/RaceResult/"
     files = os.listdir(path)
     files.sort()
 

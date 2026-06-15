@@ -1,11 +1,7 @@
-## https://racing.hkjc.com/racing/information/English/racing/RaceCard.aspx?RaceDate=2026/01/04&Racecourse=ST&RaceNo=2
-import requests
-import numpy as np
+
 from datetime import datetime
 
 import argparse
-
-from bs4 import BeautifulSoup
 
 from Objects.HKRaces import *
 from Objects.UKRaces import *
@@ -13,28 +9,29 @@ from Helpers import FileHelper as fh
 
 def main(args):
     racedate = args.racedate # '20260107'
-    date=datetime.strptime(racedate, '%Y%m%d')
-    country = "HK"
+    date = datetime.strptime(racedate, '%Y%m%d')
+    country = args.country # "HK"
 
-    races = None
+    race = None
     if (country=="HK"):
-        races = HKRaces()
+        race = HKRaces()
     elif (country=="UK"):
-        races = UKRaces()
+        race = UKRaces()
     else:
         print("Incorrect Country input.")
         return
 
-    Races = races.getCards(date)
+    Races = race.getCards(date)
 
     if len(Races) > 0:
-        fileName = "{1}_RaceCard_{0}.npy".format(racedate, country)
+        fileName = ("{1}\RaceCard\RaceCard_{0}.npy").format(racedate, country)
         fh.save_datafile(fileName, Races)
 
     return
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('racedate', type=str)
+    parser.add_argument('country', type=str, help='Country (HK / UK)')
+    parser.add_argument('racedate', type=str, help='Race Date (yyyymmdd)')
     args = parser.parse_args()
     main(args)

@@ -1,32 +1,33 @@
-
-import requests
-import numpy as np
-from datetime import datetime
-
 from Objects.HKRaces import *
+from Objects.UKRaces import *
 from Helpers import FileHelper as fh
 
 import argparse
 
-from bs4 import BeautifulSoup
-
-def getracehorse():
-    horses = []
-    races = HKRaces()
-    horses = races.getHorses()
-
-    return horses
 
 def main(args):
-    Horses = getracehorse()
-    fh.save_datafile('HK_RaceHorse.npy', Horses)
-    # if len(Horses) > 0:
-    #     np.save('./datafiles/HK_RaceHorse.npy'.format(), Horses)
-    #     print(f'{len(Horses)} horses save in RaceHorse_HK.npy')
+    country = args.country
+
+    race = None
+    if (country == "HK"):
+        race = HKRaces()
+    elif (country == "UK"):
+        race = UKRaces()
+    else:
+        print("Incorrect Country input.")
+        return
+
+    Horses = race.getHorses()
+    if len(Horses) > 0:
+        fileName = ("{0}\RaceHorse.npy").format( country)
+        fh.save_datafile(fileName, Horses)
+
+        print(f'{len(Horses)} horses save in {fileName}')
     return
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
+    parser.add_argument('country', type=str, help='Country (HK / UK)')
     # parser.add_argument('racedate', type=str)
     args = parser.parse_args()
     main(args)
