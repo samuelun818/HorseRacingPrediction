@@ -86,7 +86,7 @@ def main(args):
     race = HKRaces()
     venue = "ST"
     if args.action == "train":
-        raceResult = race.loadResuts()
+        raceResult = race.loadResults()
         print("No of race: {}".format(raceResult.shape[0]))
 
         bag.fill_horsebag(raceResult)
