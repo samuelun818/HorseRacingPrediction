@@ -37,9 +37,6 @@ def Training(trainer , race_horses, win_horses, training_size=1):
 
 def Prediction(trainer, next_races, next_results):
 
-    # next_x, next_y, next_races, next_winners, isAppended = GetNextRace(race_horses, race_winner)
-    # if isAppended:
-    #     return False, isAppended
     next_x, next_y = trainer.data_transform(next_races, next_results, len(bag.horses))
     print ("transfromed : {0} / {1}".format(next_x.shape, next_y.shape) )
     
@@ -69,7 +66,6 @@ def Prediction(trainer, next_races, next_results):
         results[i] = pred_results
 
     print(results)
-    
     return True
 
 def main(args):
@@ -106,23 +102,18 @@ def main(args):
         bag.load_horsebag()   # 10762
 
         raceCard = race.loadCards()
-        isAppended, isCompleted = False, False
 
         ## predicting
-        while not isCompleted:
-            try:
+        try:
+            next_horses, next_results = bag.vectorize_races(raceCard, venue)
+            print ("Vectorize new races: {0} / {1}".format(next_horses.shape, next_results.shape))
 
-                next_horses, next_results = bag.vectorize_races(raceCard, venue)
-                print ("Vectorize new races: {0} / {1}".format(next_horses.shape, next_results.shape))
-
-                isCompleted = Prediction(trainer, next_horses, next_results)
-            except Exception as e:
-                if "unseen labels" in str(e):
-                    print(f"New horse exists. {e}")
-                    isCompleted = True
-                else:
-                    print(f"Exception occurred: {e}")
-                    isCompleted = True
+            Prediction(trainer, next_horses, next_results)
+        except Exception as e:
+            if "unseen labels" in str(e):
+                print(f"New horse exists. {e}")
+            else:
+                print(f"Exception occurred: {e}")
 
     
 if __name__ =="__main__":
