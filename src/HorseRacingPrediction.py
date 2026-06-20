@@ -7,8 +7,8 @@ from Trainers.BagofHourse import bag_of_horses
 from Trainers.Dense_Trainer import dense_trainer
 from Trainers.LSTM_Trainer import lstm_trainer
 
-from Objects.UKRaces import *
-from Objects.HKRaces import *
+from Crawlers.UKRaces import *
+from Crawlers.HKRaces import *
 
 from matplotlib import pyplot
 

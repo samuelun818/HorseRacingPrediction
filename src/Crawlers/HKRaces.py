@@ -3,7 +3,7 @@ import numpy as np
 
 from bs4 import BeautifulSoup
 
-from Objects.Races import *
+from Crawlers.Races import *
 from Helpers import WebHelper as wh
 
 

@@ -23,9 +23,6 @@ class dense_trainer:
         x = np.zeros((racehorses.shape[0], bagsize), dtype="float")
         y = np.zeros((winners.shape[0], bagsize), dtype="float")
 
-        # w = self.le.transform(winners)
-        # c = collections.Counter(w)      
-
         for i in range(len(racehorses)):
             y[i][winners[i]] = 1
             
@@ -52,8 +49,8 @@ class dense_trainer:
         if x.shape[0] > 100:
             x = x[100:]
             y = y[100:]
-            np.savetxt('./logs/race_horses.txt', x[0], delimiter=',')
-            np.savetxt('./logs/win_horses.txt', y[0], delimiter=',')
+            np.savetxt('../logs/race_horses.txt', x[0], delimiter=',')
+            np.savetxt('../logs/win_horses.txt', y[0], delimiter=',')
 
         return x, y
     

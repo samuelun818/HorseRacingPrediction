@@ -3,8 +3,8 @@ from datetime import datetime
 
 import argparse
 
-from Objects.HKRaces import *
-from Objects.UKRaces import *
+from Crawlers.HKRaces import *
+from Crawlers.UKRaces import *
 from Helpers import FileHelper as fh
 
 def main(args):

@@ -6,8 +6,8 @@ from datetime import timedelta
 
 import argparse
 
-from Objects.UKRaces import *
-from Objects.HKRaces import *
+from Crawlers.UKRaces import *
+from Crawlers.HKRaces import *
 
 from Helpers import FileHelper as fh
 
@@ -57,6 +57,7 @@ def main(args):
             print(f"{len(Races)} races are found before {date}.")
 
     if len(Races) > 0:
+        print(Races[0])
         fileName = "/{1}/RaceResult/RaceResult_{0}.npy".format(str(year).replace("/", ""), "HK")
         fh.save_datafile(fileName, Races)
 
