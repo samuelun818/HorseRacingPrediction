@@ -3,8 +3,10 @@ import numpy as np
 import keras
 from keras import Sequential
 from keras.layers import Dense, Input, LSTM, Dropout
+from tensorflow.keras.utils import plot_model
 
 import matplotlib.pyplot as pyplot
+
 
 
 class dense_trainer:
@@ -16,7 +18,7 @@ class dense_trainer:
         self.ranktype = 'win'
         
         self.le = None
-        self.modelfile = "./Models/{}_model_{}.keras".format(self.ranktype, self.modeltype);
+        self.modelfile = "../outputs/{}_model_{}.keras".format(self.ranktype, self.modeltype);
         return
 
     def data_transform(self, racehorses, winners, bagsize):
@@ -70,13 +72,15 @@ class dense_trainer:
         self.model.add(Input(shape=(n_features, )))
         self.model.add(Dense(n_nodes, activation='tanh', kernel_initializer='he_normal'))
         self.model.add(Dropout(0.2)),
-        self.model.add(Dense(n_nodes, activation='tanh', kernel_initializer='he_normal'))
+        # self.model.add(Dense(1024, activation='tanh', kernel_initializer='he_normal'))
+        self.model.add(Dense(n_nodes * 5, activation='tanh', kernel_initializer='he_normal'))
+        self.model.add(Dense(n_nodes * 5, activation='tanh', kernel_initializer='he_normal') )
+        # self.model.add(Dense(128, activation='tanh', kernel_initializer='he_normal') return_sequences=True)
         self.model.add(Dropout(0.2)),
-        # self.model.add(Dense(2048, activation='relu', kernel_initializer='he_normal'))
-        # self.model.add(Dense(512, activation='relu', kernel_initializer='he_normal') )
-        # self.model.add(Dense(128, activation='relu', kernel_initializer='he_normal') return_sequences=True)
         self.model.add(Dense(n_class, activation="softmax"))
         print("Set model")
+
+        plot_model(self.model, to_file='../plots/dense_neural_network.png', show_shapes=True, show_layer_names=True)
 
         self.model.compile(optimizer="RMSprop", loss='categorical_crossentropy', metrics=['accuracy'])
         print("Compiled model")
@@ -110,7 +114,7 @@ class dense_trainer:
             self.model.summary()
 
         self.result = self.model.predict(x) 
-        np.savetxt('./logs/race_result.txt', self.result[0], delimiter=',')
+        np.savetxt('../logs/dense_race_result.txt', self.result[0], delimiter=',')
         return self.result
 
 

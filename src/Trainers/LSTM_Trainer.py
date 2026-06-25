@@ -3,6 +3,7 @@ import numpy as np
 import keras
 from keras import Sequential
 from keras.layers import Dense, Input, LSTM, Dropout, Bidirectional
+from tensorflow.keras.utils import plot_model
 
 import matplotlib.pyplot as pyplot
 
@@ -66,7 +67,9 @@ class lstm_trainer:
         optimizer = keras.optimizers.RMSprop(learning_rate=0.01)
         print("Set model")
         # compile the layers to model
-        
+
+        plot_model(self.model, to_file='../plots/dense_neural_network.png', show_shapes=True, show_layer_names=True)
+
         self.model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
         print("Compile model")
         

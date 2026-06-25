@@ -20,16 +20,16 @@ only authorized organization to operate horse racing and racecourses in Hong Kon
 site directly.  
 
 ## 3. Preparation ##
-Data extracted form web pages are usually unstructured and non-numeric.  However, Neural Neworks require to use numeric data for training.
-Extracted information need to be restructured with the idea of "Bag-of-Words".  
+Data extracted form web pages are usually unstructured and non-numeric.  However, Neural Networks require numeric data for 
+training. Extracted information needs to be restructured with the idea of "Bag-of-Words".   
 
 * ### Bag of Words ###
     Bag of Words is a feature extraction technique which is usually used in Nature Language Processing (NLP).  It wildly helps in training document 
-    classification, segmentation and text generation models.  Its logic is simple.   Imagining a bag that contains all the words existed in several
-    related documents.  Removed the stop words, such as "i", "we", "you", "they", etc.  We got the words which mostly related to the topic.  
+    classification, segmentation and text generation models.  Its logic is simple.   Imagining a bag that contains all the words that existed in several
+    related documents.  Removed the stop words, such as "i", "we", "you", "they", etc.  We got the words which were mostly related to the topic.  
     Then we read a new document, if it contains these related words, this new document may be categorized as related.  
-    In the same way, all horses that have competed in races during the past 10 years are stored in a numeric array (Bad of Horse).  Then, we have a three dimension array contains [Race, horse, no. of winning] which state the probability of winning of each horse. 
-    This numeric array is suitable for **Neural Neworks**  training.
+    In the same way, all horses that have competed in races during the past 10 years are stored in a numeric array (Bad of Horse).  Then, we have a three-dimension array that contains [Race, horse, no. of winning] which states the probability of winning of each horse. 
+    This numeric array is suitable for **Neural Networks**  training.
 
 <pre>
 Before data transformation, non-numeric data extracted from web page. 
@@ -49,12 +49,32 @@ Before data transformation, non-numeric data extracted from web page.
 </pre>
 
 <pre>
-3-D array which contains after data tranformation: 
+3-D array which contains after data transformation: 
 Vectorize train Races [no. of Race, no. of horse, no. of winning]: (17588, 16) 
 </pre>
 
-
-
 ## 4. Training ##
+In this project, I train the models with two difference keras layer: Dense and LSTM. Both layers are usually used in Neural Networks.  
+ 
+
+### i. Dense Layer ###
+Dense Layer is most commonly used with difference activation functions which suitable for difference scenario. In this project, there are 
+two hidden layers.  
+
+<img src="D:\Projects\HorseRacingPrediction\plots\dense_neural_network.png"/>
+
+<pre>
+Testing loss : 9.344161033630371; accuracy: 0.04831332340836525
+</pre>
+
+### ii. LSTM Layer ###
+Long Short-Term Memory is well-designed for modeling sequences and time-series data. LSTMs are designed to overcome 
+the limitations of traditional RNNs by incorporating memory cells that can maintain information over long periods.
+
+
+
+<pre>
+Testing loss : 9.166614532470703; accuracy: 0.0014212620444595814
+</pre>
 
 ## 5. Output ##
