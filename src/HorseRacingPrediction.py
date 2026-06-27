@@ -13,6 +13,7 @@ from Crawlers.HKRaces import *
 from matplotlib import pyplot
 
 import argparse
+import json
 
 bag = bag_of_horses()
 
@@ -66,8 +67,21 @@ def Prediction(trainer, next_races, next_results):
         results[i] = pred_results
 
     print(results)
-    np.savetxt(f'./logs/{trainer.modeltype}_race_result.txt', results)
+    filename = "..//logs//{0}_race_result.json".format(trainer.modeltype)
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(results, f, default=convert_numpy, ensure_ascii=False, indent=4)
+
     return True
+
+# Function to convert NumPy types to Python native types
+def convert_numpy(obj):
+    if isinstance(obj, (np.float32, np.float64)):
+        return float(obj)  # Convert to Python float
+    elif isinstance(obj, (np.int32, np.int64)):
+        return int(obj)    # Convert to Python int
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()  # Convert array to list
+    raise TypeError(f"Type {type(obj)} not serializable")
 
 def main(args):
     trainer = None
