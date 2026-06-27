@@ -68,7 +68,7 @@ class lstm_trainer:
         print("Set model")
         # compile the layers to model
 
-        plot_model(self.model, to_file='../plots/dense_neural_network.png', show_shapes=True, show_layer_names=True)
+        plot_model(self.model, to_file='../plots/lstm_neural_network.png', show_shapes=True, show_layer_names=True)
 
         self.model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
         print("Compile model")

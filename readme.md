@@ -67,14 +67,19 @@ two hidden layers.
 Testing loss : 9.344161033630371; accuracy: 0.04831332340836525
 </pre>
 
+![plot_RacingPredictionTraining_dense.png](plots%2Fplot_RacingPredictionTraining_dense.png)
+
 ### ii. LSTM Layer ###
 Long Short-Term Memory is well-designed for modeling sequences and time-series data. LSTMs are designed to overcome 
 the limitations of traditional RNNs by incorporating memory cells that can maintain information over long periods.
 
-
+![lstm_neural_network.png](plots%2Flstm_neural_network.png)
 
 <pre>
 Testing loss : 9.166614532470703; accuracy: 0.0014212620444595814
 </pre>
 
+![RacingPredictionTraining_LSTM.png](plots%2FRacingPredictionTraining_LSTM.png)
+
 ## 5. Output ##
+
