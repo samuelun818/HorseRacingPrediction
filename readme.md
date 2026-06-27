@@ -61,7 +61,7 @@ In this project, I train the models with two difference keras layer: Dense and L
 Dense Layer is most commonly used with difference activation functions which suitable for difference scenario. In this project, there are 
 two hidden layers.  
 
-<img src="D:\Projects\HorseRacingPrediction\plots\dense_neural_network.png"/>
+![dense_neural_network.png](plots%2Fdense_neural_network.png)
 
 <pre>
 Testing loss : 9.344161033630371; accuracy: 0.04831332340836525
