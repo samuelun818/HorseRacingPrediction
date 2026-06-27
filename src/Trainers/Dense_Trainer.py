@@ -86,7 +86,7 @@ class dense_trainer:
         print("Compiled model")
 
         # fit the model
-        self.fit(x_train, y_train, 40)
+        self.fit(x_train, y_train, 20)
 
     
     def fit(self, x_train, y_train, epochs=40, validation_split=0.1):
@@ -113,18 +113,16 @@ class dense_trainer:
             self.model = keras.models.load_model(self.modelfile)
             self.model.summary()
 
-        self.result = self.model.predict(x) 
-        np.savetxt('../logs/dense_race_result.txt', self.result[0], delimiter=',')
+        self.result = self.model.predict(x)
         return self.result
 
 
-    
     def plot_history(self):
 
         if self.history is None: 
             return
 
-        filename = "plot_RacingPredictionTraining_{}.png".format(self.modeltype)
+        filename = "../plots/RacingPredictionTraining_{}.png".format(self.modeltype.upper())
         # plot loss during training
         pyplot.subplot(211)
         pyplot.title('Loss / Categorical Cross Entropy ({})'.format(self.modeltype))
@@ -140,20 +138,20 @@ class dense_trainer:
         
         return
 
-    def plot_result(self):
+    def plot_result(self, out):
         if self.result is None:
             return
         
-        filename = "plot_RacingPredictionResult_{}.png".format(self.modeltype)
+        filename = "../plots/RacingPredictionResult_{}.png".format(self.modeltype)
         # plot original value
-        pyplot.subplot(311)
-        pyplot.title('Original')
-        pyplot.plot(y, label='original_y')
-        pyplot.legend()
+        # pyplot.subplot(311)
+        # pyplot.title('Original')
+        # pyplot.plot(y, label='original_y')
+        # pyplot.legend()
         # plot all prediction value
         pyplot.subplot(312)
         pyplot.title('Prediction')
-        pyplot.plot(pred_y, label='prediction_y')
+        pyplot.plot(self.result, label='prediction_y')
         pyplot.legend()
         # plot predict race value
         pyplot.subplot(313)

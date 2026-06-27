@@ -66,6 +66,7 @@ def Prediction(trainer, next_races, next_results):
         results[i] = pred_results
 
     print(results)
+    np.savetxt(f'./logs/{trainer.modeltype}_race_result.txt', results)
     return True
 
 def main(args):

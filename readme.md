@@ -1,9 +1,9 @@
 # Horse Racing Prediction #
-1. Background 
-2. Data Source 
-3. Preparation
-4. Training 
-5. Output
+1. [Background](#1-background) 
+2. [Data Source](#2-data-source) 
+3. [Preparation](#3-preparation)
+4. [Training](#4-training)
+5. [Output](#5-output)
 
 ## 1. Background ##
 Horse racing is one of the most popular sports in the world.  In Hong Kong, there are over 80 race meetings per season.
@@ -70,7 +70,7 @@ Testing loss : 9.344161033630371; accuracy: 0.04831332340836525
 </pre>
 
 <p align="center">
-<img src="plots/plot_RacingPredictionTraining_dense.png" width="50%" alt="plot_RacingPredictionTraining_dense.png" />
+<img src="plots/RacingPredictionTraining_dense.png" width="50%" alt="RacingPredictionTraining_dense.png" />
 </p>
 
 ### ii. LSTM Layer ###
@@ -85,8 +85,10 @@ Testing loss : 9.166614532470703; accuracy: 0.0014212620444595814
 </pre>
 
 <p align="center">
-<img src="plots/plot_RacingPredictionTraining_LSTM.png" width="50%" alt="plot_RacingPredictionTraining_LSTM.png" />
+<img src="plots/RacingPredictionTraining_LSTM.png" width="50%" alt="RacingPredictionTraining_LSTM" />
 </p>
 
 ## 5. Output ##
 
+The output are a little disappointed.  The model losses are always above 9 where the accuracies are below 0.1.  With the plots, it seems 
+the models are failed to find the relationships between inputs and outputs.  
