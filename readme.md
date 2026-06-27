@@ -61,26 +61,32 @@ In this project, I train the models with two difference keras layer: Dense and L
 Dense Layer is most commonly used with difference activation functions which suitable for difference scenario. In this project, there are 
 two hidden layers.  
 
-<img src="plots/dense_neural_network.png" width="50%" alt="dense_neural_network">
-
+<p align="center">
+<img src="plots/dense_neural_network.png" width="50%" alt="dense_neural_network" />
+</p>
 
 <pre>
 Testing loss : 9.344161033630371; accuracy: 0.04831332340836525
 </pre>
 
-![plot_RacingPredictionTraining_dense.png](plots%2Fplot_RacingPredictionTraining_dense.png)
+<p align="center">
+<img src="plots/plot_RacingPredictionTraining_dense.png" width="50%" alt="plot_RacingPredictionTraining_dense.png" />
+</p>
 
 ### ii. LSTM Layer ###
 Long Short-Term Memory is well-designed for modeling sequences and time-series data. LSTMs are designed to overcome 
 the limitations of traditional RNNs by incorporating memory cells that can maintain information over long periods.
 
+<p align="center">
 <img src="plots/lstm_neural_network.png" width="50%" alt="lstm_neural_network">
-
+</p>
 <pre>
 Testing loss : 9.166614532470703; accuracy: 0.0014212620444595814
 </pre>
 
-![RacingPredictionTraining_LSTM.png](plots%2FRacingPredictionTraining_LSTM.png)
+<p align="center">
+<img src="plots/plot_RacingPredictionTraining_LSTM.png" width="50%" alt="plot_RacingPredictionTraining_LSTM.png" />
+</p>
 
 ## 5. Output ##
 
