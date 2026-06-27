@@ -61,7 +61,7 @@ In this project, I train the models with two difference keras layer: Dense and L
 Dense Layer is most commonly used with difference activation functions which suitable for difference scenario. In this project, there are 
 two hidden layers.  
 
-![dense_neural_network.png](plots%2Fdense_neural_network.png)
+![dense_neural_network.png](plots%2Fdense_neural_network.png){width=50%}
 
 <pre>
 Testing loss : 9.344161033630371; accuracy: 0.04831332340836525
@@ -79,7 +79,7 @@ the limitations of traditional RNNs by incorporating memory cells that can maint
 Testing loss : 9.166614532470703; accuracy: 0.0014212620444595814
 </pre>
 
-![RacingPredictionTraining_LSTM.png](plots%2FRacingPredictionTraining_LSTM.png){width=50%}
+![RacingPredictionTraining_LSTM.png](plots%2FRacingPredictionTraining_LSTM.png)
 
 ## 5. Output ##
 
